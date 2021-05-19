@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="/main">Base</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <form method="post" action="/">
+          <input class="form-control form-control-dark w-100" type="text" placeholder="Поиск" aria-label="Поиск" type="text" name="name">
+    </form>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Выйти</a>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <img src="{{ url_for('static', filename='cdmo58.png') }}" width="200" height="200">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="/main">
+              <span data-feather="home"></span>
+              Base <span class="sr-only">(current)</span>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              1 <span class="sr-only">(current)</span>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              2 <span class="sr-only">(current)</span>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="#">
+              <span data-feather="home"></span>
+              3 <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+    </nav>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">База данных</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+              <form method="get" action="/import">
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Импорт</button>
+              </form>
+              <form method="post" action="/export">
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Экспорт</button>
+              </form>
+
+          </div>
+        </div>
+      </div>
+<div class="container">
+  <div class="row">
+      <div class="col-sm">
+      <form method="post" action="/add_message">
+
+          <input type="text" name="name" placeholder="Имя Отчество">
+          <input type="text" name="last_name" placeholder="Фамилия">
+          <input type="text" name="sp" placeholder="Специальность">
+          <input type="text" name="job" placeholder="Место работы">
+          <input type="text" name="email" placeholder="Email">
+          <input type="text" name="tel" placeholder="Телефон">
+
+
+          <button type="submit" class="btn btn-info">Добавить</button>
+      </form>
+   </div>
+  </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-hover" width="85%">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Имя Отчество</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Специальность</th>
+                    <th scope="col">Место работы</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Телефон</th>
+                    <th scope="col">Действия</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+<td>{% for tag in item.tags %}<b>{{ tag.pg }}</b>{% endfor %}
+                        </td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.last_name }}</td>
+                        <td>{{ item.sp }}</td>
+                        <td>{{ item.job }}</td>
+                        <td>{{ item.email}}</td>
+                        <td>{{ item.tel}}</td>
+                        <td><a href="/update/{{item.id}}">Обновить</a>
+                            <br>
+                            <a href="/delete/{{item.id}}">Удалить</a>
+                            <br>
+                            <a href="/adi/{{item.id}}">Добавить</a>
+                        </td>
+
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</main>
+  </div>
+</div>
+</body>
+</html>
