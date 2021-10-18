@@ -19,7 +19,7 @@ db = SQLAlchemy(app)
 def ppw():
     m = HH.query.first()
     n = str(m)
-    db.session.delete(m)
+
     db.session.commit()
     return n
 
@@ -27,6 +27,7 @@ def ppw():
 def pp(id):
     m = HH.query.get(id)
     n = str(m)
+    db.session.commit()
     return n
 
 
@@ -83,7 +84,7 @@ class Users(db.Model):
         self.email = email.strip()
         self.tel = tel.strip()
         self.tags = [
-            Pass(pg=tag.strip()) for tag in tags
+            Pass(pg=tags.strip())
         ]
 
     def __repr__(self):
