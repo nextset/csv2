@@ -19,7 +19,6 @@ db = SQLAlchemy(app)
 def ppw():
     m = HH.query.first()
     n = str(m)
-
     db.session.commit()
     return n
 
